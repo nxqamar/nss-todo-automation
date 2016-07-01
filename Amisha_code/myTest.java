@@ -35,11 +35,11 @@ public class myTest {
          BufferedReader in = new BufferedReader(new InputStreamReader(
                                     conn.getInputStream()));
          
-       /* //Print Response Value from Server
+    /*  //Print Response Value from Server
         String inputLine;
         while ((inputLine = in.readLine()) != null) 
             System.out.println(inputLine);
-        in.close();
+        in.close();  
 		*/
          
          //Create a String buffer
@@ -83,57 +83,65 @@ public class myTest {
         
         // TASK :  Read API response and print tasks in descending "due date" order        
       	
-        ArrayList<TodoJava> arList = new ArrayList<TodoJava> (Arrays.asList(tobj)); /*Convert array of object  to ArrayList */
-        			/*int count1= arList.size();	System.out.println(count1);*/
-       System.out.println("\n sorted list of task is :" );	
-       Collections.sort(arList, new Comparator <TodoJava> (){
-          
-            public int compare(TodoJava e1, TodoJava e2) {
-              
-            	if (!(e1.getDate().equals(e2.getDate()))){
-                	System.out.println( e1.getDate()+ "" + e1.getTaskname() + "\n");
-                    return -1;
-                } else                 	
-                    return 1;
-            }
-        });
-
-        
-        
-       /* ArrayList<TodoJava> arList1 = new ArrayList<TodoJava> (Arrays.asList(tobj));
-       Collections.sort(arList1, new Comparator <TodoJava> (){
-          
-            public int compare(TodoJava e1, TodoJava e2) {
-            	
-            	return e2.getDate().compareTo(e1.getDate());
-            	
-            	            	if (e1.getDate().equals(e2.getDate())){
-                	System.out.println( e2.getDate()); // "" + data2.getTaskname() + "\n");
-                    return -1;
-                } else {
-                	System.out.println(data2.getDate()+ "" + data2.getTaskname() + "\n");
-                    return 1;
-                   
-                }
-            }
-           
-
-        });
-*/        
-
-            	/*//if (!(data2.getDate().equals(data1.getDate())))
-            	 if (Integer.getInteger(data1.getID())< Integer.getInteger(data2.getID())){
-                	System.out.println(data1.getID());
-                    return -1;
-            	               }
-            	if (data1.getDate().toString().compareTo(data2.getDate().toString())>1){
-                	System.out.println( data2.getDate() ); 
-                    return -1;
-                } else 
-                	return 1;
-            }   */
- 
-             
+       ArrayList<TodoJava> arList = new ArrayList<TodoJava> (Arrays.asList(tobj)); /*Convert array of JSON objects  to ArrayList */
+        			
+       /*int count1= arList.size();	System.out.println(count1);*/
+                     
+   System.out.println("\nRead API response and print tasks in descending due date order :" );	
+   Collections.sort(arList, new Comparator <TodoJava> (){
+              public int compare(TodoJava e1, TodoJava e2) {
+            	  return e2.getDate().compareTo(e1.getDate());
+   	}
+   
+  });
+       for (int i=0;i<arList.size();i++) {
+       System.out.println( arList.get(i).getDate() + "" + arList.get(i).getTaskname());}
+}
 }
 
-}
+
+
+/*      System.out.println("\n sorted list of task is :" );	
+Collections.sort(arList, new Comparator <TodoJava> (){
+   
+     public int compare(TodoJava e1, TodoJava e2) {
+       
+     	if (!(e1.getDate().equals(e2.getDate()))){
+         	System.out.println( e1.getDate()+ "" + e1.getTaskname() + "\n");
+             return -1;
+         } else                 	
+             return 1;
+     }
+ });  */
+
+
+/*     ArrayList<TodoJava> arList1 = new ArrayList<TodoJava> (Arrays.asList(tobj));
+Collections.sort(arList1, new Comparator <TodoJava> (){
+   
+     public int compare(TodoJava e1, TodoJava e2) {
+     	
+     	return e2.getDate().compareTo(e1.getDate());
+     	
+     	            	if (e1.getDate().equals(e2.getDate())){
+         	System.out.println( e2.getDate()); // "" + data2.getTaskname() + "\n");
+             return -1;
+         } else {
+         	System.out.println(data2.getDate()+ "" + data2.getTaskname() + "\n");
+             return 1;
+            
+         }
+     }
+    
+
+ });
+      	if (!(data2.getDate().equals(data1.getDate())))
+     	 if (Integer.getInteger(data1.getID())< Integer.getInteger(data2.getID())){
+         	System.out.println(data1.getID());
+             return -1;
+     	               }
+     	if (data1.getDate().toString().compareTo(data2.getDate().toString())>1){
+         	System.out.println( data2.getDate() ); 
+             return -1;
+         } else 
+         	return 1;
+     }   */
